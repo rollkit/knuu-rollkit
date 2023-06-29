@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the URL and the expected result
-URL="localhost:26657/block\?height=3"
+URL=localhost:26657/block\?height=3
 EXPECTED_RESULT='{"jsonrpc":"2.0","error":{"code":-32603,"message":"","data":"failed to load hash from index: failed to load block hash for height 3: datastore: key not found"},"id":-1}'
 
 # Define the maximum number of retries

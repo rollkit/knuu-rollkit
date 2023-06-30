@@ -46,8 +46,8 @@ gmd tendermint unsafe-reset-all
 gmd init $VALIDATOR_NAME --chain-id $CHAIN_ID
 
 # add keys for key 1 and key 2 to keyring-backend test
-gmd keys add $KEY_NAME --keyring-backend test
-gmd keys add $KEY_2_NAME --keyring-backend test
+echo y | gmd keys add $KEY_NAME --keyring-backend test
+echo y | gmd keys add $KEY_2_NAME --keyring-backend test
 
 # add these as genesis accounts
 gmd add-genesis-account $KEY_NAME $TOKEN_AMOUNT --keyring-backend test
@@ -60,7 +60,7 @@ gmd gentx $KEY_NAME $STAKING_AMOUNT --chain-id $CHAIN_ID --keyring-backend test
 gmd collect-gentxs
 
 # start the chain
-gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT
+gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT &
 
 # uncomment the next command if you are using lazy aggregation
 # gmd start --rollkit.aggregator true --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"http://localhost:26659","timeout":60000000000,"fee":6000,"gas_limit":6000000}' --rollkit.namespace_id $NAMESPACE_ID --rollkit.da_start_height $DA_BLOCK_HEIGHT --rollkit.lazy_aggregator true
